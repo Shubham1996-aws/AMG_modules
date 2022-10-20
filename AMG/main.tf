@@ -48,7 +48,7 @@ resource "aws_iam_policy" "AMGWorkspace_MVP_policy" {
 
 #### policy attachment ###
 resource "aws_iam_policy_attachment" "AMGWorkspace_MVP_policyattachment" {
-  name       = "AMGPrometheusDataSource-policyattachment"
+  name       = "AMGWorkspace_MVP_policyattachment"
   roles      = [aws_iam_role.AMGWorkspaceRole_MVP.name]
   policy_arn = aws_iam_policy.AMGWorkspace_MVP_policy.arn
 }
