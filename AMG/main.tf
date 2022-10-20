@@ -39,9 +39,7 @@ resource "aws_iam_policy" "AMGPrometheusDataSource-policy" {
         Action = "sts:AssumeRole",
         Effect   = "Allow",
         Resource = [
-          "arn:aws:iam::${var.account_id[0]}:role/AMGPrometheusDataSourceRole-Development",
-          "arn:aws:iam::${var.account_id[0]}:role/AMGCloudWatchDataSourceRole-Development",
-          "arn:aws:iam::${var.account_id[1]}:role/AMGCloudWatchDataSourceRole-Distinct",
+          "arn:aws:iam::${var.account_id[0]}:role/AMGCloudWatchDataSourceRole"
         ]
       },
     ]
