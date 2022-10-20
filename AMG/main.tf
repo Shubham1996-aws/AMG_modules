@@ -4,14 +4,14 @@ resource "aws_grafana_workspace" "grafanaspace" {
   account_access_type      = var.account_access_type
   authentication_providers = var.authentication_providers
   permission_type          = var.permission_type
-  role_arn                 = aws_iam_role.AMGPrometheusDataSource-role.arn
+  role_arn                 = aws_iam_role.AMGWorkspaceRole_MVP.arn
   tags = {
     "Name" = var.name
   }
 }
 
 ### Cross account iam role ######
-resource "aws_iam_role" "AMGPrometheusDataSource-role" {
+resource "aws_iam_role" "AMGWorkspaceRole_MVP" {
   name = var.aws_iam_role_name
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -29,7 +29,7 @@ resource "aws_iam_role" "AMGPrometheusDataSource-role" {
 }
 ### policy creation ####
 
-resource "aws_iam_policy" "AMGPrometheusDataSource-policy" {
+resource "aws_iam_policy" "AMGWorkspace_MVP_policy" {
   name        = var.aws_iam_policy_name
   policy = jsonencode({
     Version = "2012-10-17"
@@ -47,10 +47,10 @@ resource "aws_iam_policy" "AMGPrometheusDataSource-policy" {
 }
 
 #### policy attachment ###
-resource "aws_iam_policy_attachment" "AMGPrometheusDataSource-policyattachment" {
+resource "aws_iam_policy_attachment" "AMGWorkspace_MVP_policyattachment" {
   name       = "AMGPrometheusDataSource-policyattachment"
-  roles      = [aws_iam_role.AMGPrometheusDataSource-role.name]
-  policy_arn = aws_iam_policy.AMGPrometheusDataSource-policy.arn
+  roles      = [aws_iam_role.AMGWorkspaceRole_MVP.name]
+  policy_arn = aws_iam_policy.AMGWorkspace_MVP_policy.arn
 }
 
 
